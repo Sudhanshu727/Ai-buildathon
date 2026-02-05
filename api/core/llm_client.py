@@ -28,7 +28,6 @@ class LLMClient:
     def __init__(self):
         # --- HARDCODED CONFIGURATION FOR TESTING ---
         # We are bypassing the .env file to ensure the key is sent correctly.
-        # self.api_key = "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"
         self.api_key = os.getenv("OPENROUTER_API_KEY")
         self.model = "xiaomi/mimo-v2-flash"
         
