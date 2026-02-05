@@ -1,6 +1,20 @@
 """
 LLM Client: Handles communication with OpenRouter API.
 """
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Build path to config/.env
+env_path = Path(__file__).resolve().parents[2] / "config" / ".env"
+
+# Load it
+load_dotenv(env_path, override=True)
+
+# Debug
+print("ENV FILE LOADED:", env_path)
+print("OPENROUTER KEY:", os.getenv("OPENROUTER_API_KEY"))
+
 
 import json
 import requests
@@ -14,7 +28,8 @@ class LLMClient:
     def __init__(self):
         # --- HARDCODED CONFIGURATION FOR TESTING ---
         # We are bypassing the .env file to ensure the key is sent correctly.
-        self.api_key = "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"
+        # self.api_key = "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"
+        self.api_key = os.getenv("OPENROUTER_API_KEY")
         self.model = "xiaomi/mimo-v2-flash"
         
         self.base_url = "https://openrouter.ai/api/v1/chat/completions"
